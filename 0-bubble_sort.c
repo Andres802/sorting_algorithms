@@ -1,4 +1,5 @@
 #include "sort.h"
+
 /**
  * bubble_sort - sorting bubble sort algo
  * @array: array input
@@ -14,7 +15,7 @@ void bubble_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 		return;
 
-	unsorted  = 1;
+	unsorted = 1;
 	while (unsorted)
 	{
 		unsorted = 0;
@@ -27,6 +28,5 @@ void bubble_sort(int *array, size_t size)
 				unsorted = 1;
 				print_array(array, size);
 			}
-
 	}
 }
