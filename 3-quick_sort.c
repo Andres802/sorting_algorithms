@@ -13,7 +13,8 @@ size_t partition(int *array, size_t lo, size_t hi, size_t size);
  */
 void quick_sort(int *array, size_t size)
 {
-	sort(array, 0, size - 1, size);
+	if (size > 1 && array != NULL)
+		sort(array, 0, size - 1, size);
 }
 
 /**
