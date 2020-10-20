@@ -66,12 +66,15 @@ size_t partition(int *array, size_t lo, size_t hi, size_t size)
 			tmp = array[i_pivot];
 			array[i_pivot] = array[i_sort];
 			array[i_sort] = tmp;
+			if (i_sort != i_pivot)
+				print_array(array, size);
 			i_pivot++;
 		}
 	}
 	tmp = array[i_pivot];
 	array[i_pivot] = array[hi];
 	array[hi] = tmp;
-	print_array(array, size);
+	if (i_sort != i_pivot)
+		print_array(array, size);
 	return (i_pivot);
 }
