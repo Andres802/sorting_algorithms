@@ -110,7 +110,7 @@ int sorted(int *array, size_t size)
 		if (array[i] >= array[i - 1])
 			sorted++;
 
-	if (sorted == size)
+	if (sorted == size - 1)
 		return (1);
 	return (0);
 }
