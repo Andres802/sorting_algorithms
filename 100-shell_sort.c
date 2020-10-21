@@ -2,6 +2,8 @@
 
 size_t power(size_t n);
 void insertion_sort(int *array, size_t size);
+int sorted(int *array, size_t size);
+
 /**
  * shell_sort - sorts an array of integers in ascending order using
  * the Shell sort algorithm, using the Knuth sequence.
@@ -97,17 +99,18 @@ void insertion_sort(int *array, size_t size)
  * sorted - checks if array is sorted in ascending order.
  * @array: Array to check.
  * @size: Size of the array.
- * 
- * Returns: True if sorted, otherwise false.
+ *
+ * Return: True if sorted, otherwise false.
  */
 int sorted(int *array, size_t size)
 {
-	int sorted;
-	size_t i;
+	size_t i, sorted;
 
 	for (sorted = 0, i = 1; i < size; i++)
 		if (array[i] >= array[i - 1])
-			sorted = 1;
-	
-	return (sorted);
+			sorted++;
+
+	if (sorted == size)
+		return (1);
+	return (0);
 }
