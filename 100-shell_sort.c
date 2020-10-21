@@ -15,15 +15,14 @@ void shell_sort(int *array, size_t size)
 	int tmp;
 	size_t i_gap, i_sort, i_next, i_prev, gap;
 
-	if (size < 2 && array == NULL)
+	if (size < 2 || array == NULL || sorted(array, size))
 		return;
 
 	for (i_gap = 1; i_gap < size; i_gap++)
 		if ((power(i_gap) - 1) / 2 > size)
 			break;
 
-	i_gap--;
-	for (; i_gap > 0; i_gap--)
+	for (i_gap--; i_gap > 0; i_gap--)
 	{
 		if (i_gap == 1)
 		{
@@ -92,4 +91,23 @@ void insertion_sort(int *array, size_t size)
 			array[i_sort] = tmp;
 		}
 	}
+}
+
+/**
+ * sorted - checks if array is sorted in ascending order.
+ * @array: Array to check.
+ * @size: Size of the array.
+ * 
+ * Returns: True if sorted, otherwise false.
+ */
+int sorted(int *array, size_t size)
+{
+	int sorted;
+	size_t i;
+
+	for (sorted = 0, i = 1; i < size; i++)
+		if (array[i] >= array[i - 1])
+			sorted = 1;
+	
+	return (sorted);
 }
