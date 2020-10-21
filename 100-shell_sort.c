@@ -65,7 +65,7 @@ size_t power(size_t n)
 	for (; n > 0; n--)
 		power *= 3;
 
-	return power;
+	return (power);
 }
 
 /**
