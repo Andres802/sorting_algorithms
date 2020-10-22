@@ -1,9 +1,5 @@
 #include "sort.h"
 
-/*size_t power(size_t n);
-void insertion_sort(int *array, size_t size);
-int sorted(int *array, size_t size);*/
-
 /**
  * shell_sort - sorts an array of integers in ascending order using
  * the Shell sort algorithm, using the Knuth sequence.
