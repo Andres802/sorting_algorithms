@@ -1,8 +1,8 @@
 #include "sort.h"
 
-size_t power(size_t n);
+/*size_t power(size_t n);
 void insertion_sort(int *array, size_t size);
-int sorted(int *array, size_t size);
+int sorted(int *array, size_t size);*/
 
 /**
  * shell_sort - sorts an array of integers in ascending order using
@@ -15,102 +15,26 @@ int sorted(int *array, size_t size);
 void shell_sort(int *array, size_t size)
 {
 	int tmp;
-	size_t i_gap, i_sort, i_next, i_prev, gap;
+	size_t gap, i_gap, i_sort;
 
-	if (size < 2 || array == NULL || sorted(array, size))
+	if (size < 2 || array == NULL)
 		return;
 
-	for (i_gap = 1; i_gap < size; i_gap++)
-		if ((power(i_gap) - 1) / 2 > size)
-			break;
-
-	for (i_gap--; i_gap > 0; i_gap--)
+	for (gap = 1; gap < size / 3; gap = gap * 3 + 1)
+		continue;
+	for (; gap > 0; gap = (gap - 1) / 3)
 	{
-		if (i_gap == 1)
+		for (i_gap = gap; i_gap < size; i_gap++)
 		{
-			insertion_sort(array, size);
-			print_array(array, size);
-		}
-		else
-		{
-			gap = (power(i_gap) - 1) / 2;
-			for (i_sort = 0; i_sort < i_gap; i_sort++)
+			tmp = array[i_gap];
+			for (i_sort = i_gap;
+			     i_sort > gap - 1 && array[i_sort - gap] >= tmp;
+			     i_sort -= gap)
 			{
-				for (i_next = i_sort + gap, i_prev = i_sort;
-				     i_next < size;
-				     i_next += gap, i_prev += gap)
-				{
-					if (array[i_prev] > array[i_next])
-					{
-						tmp = array[i_prev];
-						array[i_prev] = array[i_next];
-						array[i_next] = tmp;
-					}
-				}
+				array[i_sort] = array[i_sort - gap];
 			}
-			print_array(array, size);
-		}
-	}
-}
-
-/**
- * power - calculate 3 raised to @n power.
- * @n: Power.
- *
- * Return: 3 raised to @n power.
- */
-size_t power(size_t n)
-{
-	size_t power = 1;
-
-	for (; n > 0; n--)
-		power *= 3;
-
-	return (power);
-}
-
-/**
- * insertion_sort - sorts a array of integers in ascending order using
- * the Insertion sort algorithm.
- * @array: Array to sort.
- * @size: Size of the array.
- *
- * Return: Nothing.
- */
-void insertion_sort(int *array, size_t size)
-{
-	size_t i_main, i_sort;
-	int tmp;
-
-	for (i_main = 0; i_main < size; i_main++)
-	{
-		for (i_sort = i_main;
-		     i_sort > 0 && array[i_sort] < array[i_sort - 1];
-		     i_sort--)
-		{
-			tmp = array[i_sort - 1];
-			array[i_sort - 1] = array[i_sort];
 			array[i_sort] = tmp;
 		}
+		print_array(array, size);
 	}
-}
-
-/**
- * sorted - checks if array is sorted in ascending order.
- * @array: Array to check.
- * @size: Size of the array.
- *
- * Return: True if sorted, otherwise false.
- */
-int sorted(int *array, size_t size)
-{
-	size_t i, sorted;
-
-	for (sorted = 0, i = 1; i < size; i++)
-		if (array[i] >= array[i - 1])
-			sorted++;
-
-	if (sorted == size - 1)
-		return (1);
-	return (0);
 }
